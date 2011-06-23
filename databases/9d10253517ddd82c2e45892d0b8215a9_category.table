@@ -1,0 +1,52 @@
+(dp1
+S'article'
+p2
+(dp3
+S'sortable'
+p4
+I2
+sS'type'
+p5
+S'reference article'
+p6
+sS'sql'
+p7
+S'INT, INDEX article__idx (article), FOREIGN KEY (article) REFERENCES article(id) ON DELETE CASCADE'
+p8
+ssS'tag'
+p9
+(dp10
+g4
+I3
+sg5
+S'reference tag'
+p11
+sg7
+S'INT, INDEX tag__idx (tag), FOREIGN KEY (tag) REFERENCES tag(id) ON DELETE CASCADE'
+p12
+ssS'id'
+p13
+(dp14
+g4
+I1
+sg5
+S'id'
+p15
+sg7
+S'INT AUTO_INCREMENT NOT NULL'
+p16
+ssS'name'
+p17
+(dp18
+S'type'
+p19
+S'string'
+p20
+sS'sortable'
+p21
+I2
+sS'sql'
+p22
+S'VARCHAR(255)'
+p23
+ss.

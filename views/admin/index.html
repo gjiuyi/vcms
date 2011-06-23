@@ -1,0 +1,12 @@
+{{left_sidebar_enabled = True}}
+{{right_sidebar_enabled = False}}
+{{extend 'layout.html'}}
+<table id="interlace">
+{{for article in articles:}}
+{{=TR(
+    A(article.title, _href=URL('edit', args=article.id)),
+    A('Show', _href=URL('default', 'show', args=article.id), _target='_blank'), 
+    A('Delete', _href=URL('delete', args=article.id)))}}
+{{pass}}
+</table>
+{{=P(A('Add an article', _href=URL('new')))}}

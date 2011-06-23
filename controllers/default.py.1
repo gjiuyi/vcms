@@ -1,0 +1,28 @@
+def index():
+    articles = db().select(db.article.ALL, orderby=~db.article.date)
+    return dict(articles=articles)
+
+def user():
+    return dict(form=auth())
+
+def show():
+    #article = db(db.article.id==request.args(0)).select().first()
+    article = db.article(request.args(0)) or redirect(URL('index'))
+    return dict(article=article)
+    
+def news():
+    articles = db().select(db.article.ALL, orderby=~db.article.date)
+    return dict(
+        title = '微学公务员考试资讯',
+        link = 'http://www.htexam.net/soft/',
+        description = '最新最权威的公务员考试资讯',
+        created_on = request.now,
+        items = [
+            dict(
+                title = article.title,
+                link = 'http://%s%s' % (request.env.http_host, URL('show', args=article.id)),
+                description = article.content,
+                created_on = article.date
+            ) for article in articles
+        ]
+    )

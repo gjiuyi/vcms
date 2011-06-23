@@ -1,0 +1,395 @@
+timestamp: 2011-06-02T14:04:43.737093
+CREATE TABLE article(
+    id INT AUTO_INCREMENT NOT NULL,
+    title VARCHAR(255),
+    date DATETIME,
+    content LONGTEXT,
+    url VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-02T14:04:43.744313
+CREATE TABLE tag(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-02T14:04:43.747781
+CREATE TABLE category(
+    id INT AUTO_INCREMENT NOT NULL,
+    article INT, INDEX article__idx (article), FOREIGN KEY (article) REFERENCES article(id) ON DELETE CASCADE,
+    tag INT, INDEX tag__idx (tag), FOREIGN KEY (tag) REFERENCES tag(id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-02T17:16:20.728416
+ALTER TABLE article ADD date__tmp DATE;
+success!
+UPDATE article SET date__tmp=date;
+success!
+ALTER TABLE article DROP COLUMN date;
+success!
+ALTER TABLE article ADD date DATE;
+success!
+UPDATE article SET date=date__tmp;
+success!
+ALTER TABLE article DROP COLUMN date__tmp;
+success!
+timestamp: 2011-06-03T11:03:59.600536
+ALTER TABLE article ADD date__tmp DATETIME;
+success!
+UPDATE article SET date__tmp=date;
+success!
+ALTER TABLE article DROP COLUMN date;
+success!
+ALTER TABLE article ADD date DATETIME;
+success!
+UPDATE article SET date=date__tmp;
+success!
+ALTER TABLE article DROP COLUMN date__tmp;
+success!
+timestamp: 2011-06-03T12:06:12.673062
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    registration_key VARCHAR(255),
+    reset_password_key VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-03T12:06:12.679834
+CREATE TABLE auth_group(
+    id INT AUTO_INCREMENT NOT NULL,
+    role VARCHAR(255),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-03T12:06:12.683644
+CREATE TABLE auth_membership(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group(id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-03T12:06:12.688946
+CREATE TABLE auth_permission(
+    id INT AUTO_INCREMENT NOT NULL,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group(id) ON DELETE CASCADE,
+    name VARCHAR(255),
+    table_name VARCHAR(255),
+    record_id INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-03T12:06:12.693786
+CREATE TABLE auth_event(
+    id INT AUTO_INCREMENT NOT NULL,
+    time_stamp DATETIME,
+    client_ip VARCHAR(255),
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin VARCHAR(255),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-03T12:06:12.698337
+CREATE TABLE auth_cas(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user(id) ON DELETE CASCADE,
+    created_on DATETIME,
+    url VARCHAR(255),
+    uuid VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-08T16:45:32.930296
+ALTER TABLE tag ADD taxonomy VARCHAR(255);
+success!
+timestamp: 2011-06-08T16:50:42.084070
+CREATE TABLE taxonomy(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-08T17:18:12.844405
+ALTER TABLE tag ADD taxonomy__tmp INT, ADD INDEX taxonomy__idx (taxonomy), ADD FOREIGN KEY (taxonomy) REFERENCES taxonomy(id) ON DELETE CASCADE;
+timestamp: 2011-06-08T17:18:13.948080
+ALTER TABLE tag ADD taxonomy__tmp INT, ADD INDEX taxonomy__idx (taxonomy), ADD FOREIGN KEY (taxonomy) REFERENCES taxonomy(id) ON DELETE CASCADE;
+timestamp: 2011-06-08T17:19:41.025810
+ALTER TABLE tag ADD taxonomy__tmp INT, ADD INDEX taxonomy__idx (taxonomy), ADD FOREIGN KEY (taxonomy) REFERENCES taxonomy(id) ON DELETE CASCADE;
+timestamp: 2011-06-08T17:20:12.778111
+ALTER TABLE tag ADD taxonomy__tmp INT, ADD INDEX taxonomy__idx (taxonomy), ADD FOREIGN KEY (taxonomy) REFERENCES taxonomy(id) ON DELETE CASCADE;
+timestamp: 2011-06-08T17:20:47.008577
+ALTER TABLE tag ADD taxonomy__tmp INT, ADD INDEX taxonomy__idx (taxonomy), ADD FOREIGN KEY (taxonomy) REFERENCES taxonomy(id) ON DELETE CASCADE;
+timestamp: 2011-06-08T17:23:54.201993
+ALTER TABLE tag ADD taxonomy__tmp INT, ADD INDEX taxonomy__idx (taxonomy), ADD FOREIGN KEY (taxonomy) REFERENCES taxonomy(id) ON DELETE CASCADE;
+timestamp: 2011-06-08T17:24:38.234688
+CREATE TABLE lookup(
+    id INT AUTO_INCREMENT NOT NULL,
+    article INT, INDEX article__idx (article), FOREIGN KEY (article) REFERENCES article(id) ON DELETE CASCADE,
+    tag INT, INDEX tag__idx (tag), FOREIGN KEY (tag) REFERENCES tag(id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-08T17:29:59.427506
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    registration_key VARCHAR(255),
+    reset_password_key VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2011-06-08T17:30:28.939612
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    registration_key VARCHAR(255),
+    reset_password_key VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2011-06-08T17:30:57.058430
+ALTER TABLE tag ADD taxonomy__tmp INT, ADD INDEX taxonomy__idx (taxonomy), ADD FOREIGN KEY (taxonomy) REFERENCES taxonomy(id) ON DELETE CASCADE;
+timestamp: 2011-06-09T08:46:30.501532
+CREATE TABLE classification(
+    id INT AUTO_INCREMENT NOT NULL,
+    article INT, INDEX article__idx (article), FOREIGN KEY (article) REFERENCES article(id) ON DELETE CASCADE,
+    tag INT, INDEX tag__idx (tag), FOREIGN KEY (tag) REFERENCES tag(id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2011-06-11T17:31:11.621188
+ALTER TABLE article ADD tags LONGTEXT;
+success!
+timestamp: 2011-06-14T10:45:14.321038
+ALTER TABLE article ADD categories LONGTEXT;
+success!
+timestamp: 2011-06-14T10:45:14.375583
+ALTER TABLE article ADD post_tags LONGTEXT;
+success!
+timestamp: 2011-06-14T10:45:14.378905
+ALTER TABLE article DROP COLUMN tags;
+success!
+timestamp: 2011-06-14T10:45:14.393422
+ALTER TABLE category ADD name VARCHAR(255);
+success!
+timestamp: 2011-06-14T10:45:14.412499
+ALTER TABLE category DROP COLUMN article;
+timestamp: 2011-06-14T11:10:16.175936
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512)
+);
+success!
+timestamp: 2011-06-14T11:10:16.201556
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2011-06-14T11:10:16.213659
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-06-14T11:10:16.217551
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2011-06-14T11:10:16.236051
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2011-06-14T11:10:16.241896
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    url CHAR(512),
+    uuid CHAR(512)
+);
+success!
+timestamp: 2011-06-14T11:10:16.245991
+CREATE TABLE article(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512),
+    date TIMESTAMP,
+    content TEXT,
+    url CHAR(512),
+    categories TEXT,
+    post_tags TEXT
+);
+success!
+timestamp: 2011-06-14T11:10:16.249048
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!
+timestamp: 2011-06-14T11:10:16.259594
+CREATE TABLE post_tag(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!
+timestamp: 2011-06-23T09:18:29.601680
+ALTER TABLE category ADD order INTEGER;
+timestamp: 2011-06-23T09:19:50.066124
+ALTER TABLE category ADD order INTEGER;
+timestamp: 2011-06-23T09:20:37.236488
+ALTER TABLE category ADD order INTEGER;
+timestamp: 2011-06-23T09:20:51.799492
+ALTER TABLE category ADD order INTEGER;
+timestamp: 2011-06-23T09:23:05.609907
+ALTER TABLE category ADD order INTEGER;
+timestamp: 2011-06-23T09:24:00.391863
+ALTER TABLE category ADD order INTEGER;
+timestamp: 2011-06-23T09:24:09.503736
+ALTER TABLE category ADD order INTEGER;
+timestamp: 2011-06-23T09:26:48.711523
+ALTER TABLE category ADD order CHAR(512);
+timestamp: 2011-06-23T09:26:51.747545
+ALTER TABLE category ADD order CHAR(512);
+timestamp: 2011-06-23T09:31:31.883569
+ALTER TABLE category ADD order INTEGER;
+timestamp: 2011-06-23T10:36:32.539521
+ALTER TABLE category ADD order INTEGER;
+timestamp: 2011-06-23T10:37:07.679038
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512)
+);
+success!
+timestamp: 2011-06-23T10:37:07.693188
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2011-06-23T10:37:07.696671
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-06-23T10:37:07.700516
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2011-06-23T10:37:07.704661
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2011-06-23T10:37:07.708538
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    url CHAR(512),
+    uuid CHAR(512)
+);
+success!
+timestamp: 2011-06-23T10:37:07.712794
+CREATE TABLE article(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512),
+    date DATE,
+    content TEXT,
+    url CHAR(512),
+    categories TEXT,
+    post_tags TEXT
+);
+success!
+timestamp: 2011-06-23T10:37:07.716017
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    order INTEGER
+);
+timestamp: 2011-06-23T10:38:26.571966
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    order INTEGER
+);
+timestamp: 2011-06-23T10:38:51.235135
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    order INTEGER
+);
+timestamp: 2011-06-23T10:40:05.741638
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    order INTEGER
+);
+timestamp: 2011-06-23T10:41:09.179306
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    importance INTEGER
+);
+success!
+timestamp: 2011-06-23T10:41:09.183418
+CREATE TABLE post_tag(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    importance INTEGER
+);
+success!
+timestamp: 2011-06-23T10:41:23.725339
+ALTER TABLE category ADD importance INTEGER;
+timestamp: 2011-06-23T10:41:23.729524
+ALTER TABLE post_tag ADD importance INTEGER;
+timestamp: 2011-06-23T12:12:16.846806
+ALTER TABLE article ADD modified TIMESTAMP;

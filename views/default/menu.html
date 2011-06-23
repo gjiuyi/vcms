@@ -1,0 +1,16 @@
+<h2>{{=T('分类')}}</h2>
+<div id="categories">
+<ul class="menu">
+{{for category in categories:}}
+{{=LI(A(category.name, _href=URL('list', vars=dict(category=category.id))))}}
+{{pass}}
+</ul>
+</div>
+<div id="post_tags">
+<h2>{{=T('标签')}}</h2>
+<ul class="menu">
+{{for post_tag in post_tags:}}
+{{=LI(A(post_tag.name, _href=URL('list', vars=dict(post_tag=post_tag.id))))}}
+{{pass}}
+</ul>
+</div>

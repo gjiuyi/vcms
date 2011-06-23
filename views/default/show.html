@@ -1,0 +1,36 @@
+{{left_sidebar_enabled = True}}
+{{extend 'layout.html'}}
+<div id="article">
+<div id="title">
+<h1>{{=response.title}}</h1>
+({{=article.date}})
+</div>
+<hr/>
+<div id="article_content">
+{{=XML(article.content)}}
+</div>
+{{if cur_categories:}}
+<div id="cur_categories">
+    {{=T('分类')}}:
+    {{for category in cur_categories:}}
+        {{=A(category['name'], _href=URL('list', vars=dict(category=category['id'])))}}
+    {{pass}}
+</div>
+{{pass}}
+{{if cur_post_tags:}}
+<div id="cur_post_tags">
+    {{=T('标签')}}:
+    {{for post_tag in cur_post_tags:}}
+        {{=A(post_tag['name'], _href=URL('list', vars=dict(post_tag=post_tag['id'])))}}
+    {{pass}}
+</div>
+{{pass}}
+</div>
+
+{{block header}}
+{{include request.controller + '/header.html'}}
+{{end}}
+
+{{block left_sidebar}}
+{{include request.controller + '/menu.html'}}
+{{end}}

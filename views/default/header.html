@@ -1,0 +1,10 @@
+{{statusbar_enabled = False}}
+<a style="color: black;" href="{{=URL(request.application, 'default', 'index')}}">
+    <!-- <img id="header-logo" style="float: left;" src="{{=URL('static', 'images/logo.png')}}" /> -->
+    <h2 id="sitetitle">
+        {{=request.application.upper()}}
+    </h2>
+    <h2 id="subtitle">
+        {{=response.subtitle}}
+    </h2>
+</a>

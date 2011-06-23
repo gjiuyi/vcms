@@ -1,0 +1,25 @@
+{{left_sidebar_enabled = True}}
+
+{{response.files.append(URL('static', 'js/jHtmlArea_0.7.0.min.js'))}}
+{{response.files.append(URL('static', 'css/jHtmlArea.css'))}}
+{{response.files.append(URL('static', 'css/jqueryui/ui-lightness/jquery-ui-1.7.2.custom.css'))}}
+
+{{extend 'layout.html'}}
+
+<script type="text/javascript">
+$(function() {
+    $("textarea").htmlarea({
+        toolbar: [
+            ['html'],
+            ['bold', 'underline', '|', 'forecolor'],
+            ['h2', 'h3', 'h4', '|', 'p'],
+            ['orderedlist', 'unorderedlist', '|', 'indent', 'outdent'],
+            ['justifyleft', 'justifycenter', 'justifyright'],
+            ['link', 'unlink', '|', 'image']
+        ],
+        css: '/{{=request.application}}/static/css/jHtmlArea.Editor.css'
+    });
+});
+</script>
+
+{{=BEAUTIFY(form)}}

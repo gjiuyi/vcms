@@ -1,0 +1,35 @@
+{{left_sidebar_enabled = True}}
+{{extend 'layout.html'}}
+<table>
+{{for tag in tags:}}
+{{=A(tag.name, _href=URL('edit_tags', vars=dict(action='edit', taxonomy=taxonomy, tag_id=tag.id)))}}
+&nbsp;
+{{pass}}
+</table>
+{{taxonomy = request.vars['taxonomy']}}
+{{action = request.vars['action']}}
+{{if taxonomy == 'category':}}
+    {{=form.custom.begin}}
+        <input name="taxonomy" type="hidden" value="category" />
+    <table>
+        <tr><td><label>{{=T('Category')}}:</label></td><td>{{=form.custom.widget.name}}</td></tr>
+        <tr><td><label>{{=T('Order')}}:</label></td><td>{{=form.custom.widget.importance}}</td></tr>
+        {{if action == 'edit':}}
+            <tr><label><td><label>{{=T('Check to delete')}}:</label></label></td><td>{{=form.custom.deletable}}</td></tr>
+        {{pass}}
+        <tr><td></td><td>{{=form.custom.submit}}</td></tr>
+    </table>
+    {{=form.custom.end}}
+{{elif taxonomy == 'post_tag':}}
+    {{=form.custom.begin}}
+        <input name="taxonomy" type="hidden" value="post_tag" />
+    <table>
+        <tr><td><label>{{=T('Post Tag')}}:</label></td><td>{{=form.custom.widget.name}}</td></tr>
+        <tr><td><label>{{=T('Order')}}:</label></td><td>{{=form.custom.widget.importance}}</td></tr>
+        {{if action == 'edit':}}
+            <tr><td><label>{{=T('Check to delete')}}:</label></td><td>{{=form.custom.deletable}}</td></tr>
+        {{pass}}
+        <tr><td></td><td>{{=form.custom.submit}}</td></tr>
+    </table>
+    {{=form.custom.end}}
+{{pass}}

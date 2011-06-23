@@ -1,0 +1,33 @@
+{{statusbar_enabled = False}}
+{{left_sidebar_enabled = True}}
+{{right_sidebar_enabled = False}}
+{{extend 'layout.html'}}
+<div id="list">
+<h1>{{=response.title}}</h1>
+<div id="table">
+<table>
+<tr>
+    <th>{{=T('标题')}}</th>
+    <th>{{=T('时间')}}</th>
+</tr>
+{{for article in articles:}}
+{{
+import datetime
+#date = datetime.datetime(article.date)
+date = article.date
+date = datetime.date(date.year, date.month, date.day)
+date = date.isoformat()
+}}
+{{=TR(A(article.title, _href=URL('show', args=article.id), _target='_blank'), ' (' + date + ')')}}
+{{pass}}
+</table>
+</div>
+</div>
+
+{{block header}}
+{{include request.controller + '/header.html'}}
+{{end}}
+
+{{block left_sidebar}}
+{{include request.controller + '/menu.html'}}
+{{end}}
