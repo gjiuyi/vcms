@@ -3,6 +3,21 @@
 {{extend 'layout.html'}}
 <div id="list">
 <h1>{{=response.title}}</h1>
+<p>本分类下共有{{=record_num}}条资讯</p>
+<div class="page_num">
+{{if max_page > 1:}}
+{{#if max_page > 10: max_page = 10}}
+{{for i in range(max_page):}}
+{{if i+1 == page:}}
+<span class="cur_page">
+{{else:}}
+<span class="page">
+{{pass}}
+    <a href="{{=URL(vars=dict(page=i+1, category=category_id, post_tag=post_tag_id))}}" title="{{=response.title}}第{{=i+1}}页">{{=i+1}}</a>
+</span>
+{{pass}}
+{{pass}}
+</div><!-- End .page_num -->
 <div id="table">
 <table>
 <tr>
@@ -20,11 +35,26 @@ date = date.isoformat()
 {{=TR(A(article.title, _href=URL('show', args=article.id), _target='_blank'), ' (' + date + ')')}}
 {{pass}}
 </table>
-</div>
+</div><!-- End #table -->
+<div class="page_num">
+{{if max_page > 1:}}
+{{#if max_page > 10: max_page = 10}}
+{{for i in range(max_page):}}
+{{if i+1 == page:}}
+<span class="cur_page">
+{{else:}}
+<span class="page">
+{{pass}}
+    <a href="{{=URL(vars=dict(page=i+1))}}" title="{{=response.title}}第{{=i+1}}页">{{=i+1}}</a>
+</span>
+{{pass}}
+{{pass}}
+</div><!-- End .page_num -->
+</div><!-- End #list -->
+
 {{block header}}
 {{include request.controller + '/header.html'}}
 {{end}}
 {{block left_sidebar}}
 {{include request.controller + '/menu.html'}}
 {{end}}
-</div>

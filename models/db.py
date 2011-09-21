@@ -14,12 +14,13 @@ crud = Crud(globals(), db)
 
 
 db.define_table('article',
-    Field('title'),
-    Field('date', 'date', default=request.now.date()),
+    Field('title'),    # article title
+    Field('date', 'date', default=request.now.date()),    # article pub date
+    Field('exam_date', 'date', default=request.now.date()),    # exam date
     #Field('date', 'datetime', default=request.now),    # miliseconds will cause error, not yet solved
     Field('modified', 'datetime', default=request.now, update=request.now),
-    Field('content', 'text'),
-    Field('url'),
+    Field('content', 'text'),    # article content
+    Field('url'),    # article source url
     Field('categories', 'list:reference category'),
     Field('post_tags', 'list:reference post_tag'),
     #Field('tags', 'list:reference tag'),    #to be deleted

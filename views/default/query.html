@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{{=response.title}}</title>
+<style>
+body {
+    color: #333333;
+}
+a {
+    text-decoration: none;
+    color: #333333;
+}
+a:hover {
+    color: blue;
+}
+</style>
+</head>
+<body>
+<div id="query">
+考试日期为<strong>{{=exam_date}}</strong>的考试资讯：
+<ol>
+{{for article in articles:}}
+<li>
+<a href="{{=URL('default', 'show')}}/{{=article.id}}" title="{{=article.title}}全文浏览" target="_blank">
+    {{=article.title}}
+</a>
+({{=article.date}})
+</li>
+{{pass}}
+</ol>
+</div><!-- End #query -->
+</body>
+</html>

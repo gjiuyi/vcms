@@ -393,3 +393,5 @@ timestamp: 2011-06-23T10:41:23.729524
 ALTER TABLE post_tag ADD importance INTEGER;
 timestamp: 2011-06-23T12:12:16.846806
 ALTER TABLE article ADD modified TIMESTAMP;
+timestamp: 2011-09-21T14:45:37.590930
+ALTER TABLE article ADD exam_date DATE;

@@ -25,6 +25,22 @@ else: right_sidebar_style = 'style="display: none;"'
 style_content = 'style="width: %s;"' % width_content
 }}
 </script>
+{{block head}}
+{{end}}
+<!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24223947-3']);
+  _gaq.push(['_setDomainName', '.vstudy.cn']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- End Google Analytics -->
 </head>
 <!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
 <!--[if IE 7 ]>    <body class="ie7"> <![endif]-->
@@ -117,11 +133,13 @@ style_content = 'style="width: %s;"' % width_content
     </div><!-- #module-content -->
 
     <div id="module-footer" class="ez-box">
+{{block footer}}
 <footer id="footer" class="ez-box">
     {{=response.meta.copyright}} - 
     {{=T('Powered by')}} <a href="http://www.web2py.com/" target="_blank">web2py</a>
-</footer><!-- #footer -->
-    </div><!-- #module-footer -->
-</div><!-- #module-whole -->
+</footer><!-- End #footer -->
+{{end}}
+    </div><!-- End #module-footer -->
+</div><!-- End #module-whole -->
 </body>
 </html>

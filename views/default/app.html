@@ -1,0 +1,164 @@
+{{extend 'layout.html'}}
+
+{{if type == 'iframe':}}
+<style type="text/css">
+#module-3-2 {
+    width: 530px;    /* 留出10px的余量 */
+    font-size: 0.9em;
+}
+</style>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css" type="text/css" media="all" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+    $( "#tabs" ).tabs();
+});
+</script>
+<!-- for iframe page -->
+<div class="iframe">
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">公务员</a></li>
+            <li><a href="#tabs-2">事业单位</a></li>
+            <li><a href="#tabs-3">招教</a></li>
+            <li><a href="#tabs-4">招警</a></li>
+        </ul>
+        <div id="tabs-1">
+            <table>
+            <tr>
+                <th>{{=T('标题')}}</th>
+                <th>{{=T('时间')}}</th>
+            </tr>
+            {{for article in articles[1]:}}
+            {{
+            import datetime
+            #date = datetime.datetime(article.date)
+            date = article.date
+            date = datetime.date(date.year, date.month, date.day)
+            date = date.isoformat()
+            }}
+            {{=TR(A(article.title, _href=URL('show', args=article.id), _target='_blank'), ' (' + date + ')')}}
+            {{pass}}
+            </table>
+        </div><!-- End #tabs-1 -->
+        <div id="tabs-2">
+            <table>
+            <tr>
+                <th>{{=T('标题')}}</th>
+                <th>{{=T('时间')}}</th>
+            </tr>
+            {{for article in articles[2]:}}
+            {{
+            import datetime
+            #date = datetime.datetime(article.date)
+            date = article.date
+            date = datetime.date(date.year, date.month, date.day)
+            date = date.isoformat()
+            }}
+            {{=TR(A(article.title, _href=URL('show', args=article.id), _target='_blank'), ' (' + date + ')')}}
+            {{pass}}
+            </table>
+        </div><!-- End #tabs-2 -->
+        <div id="tabs-3">
+            <table>
+            <tr>
+                <th>{{=T('标题')}}</th>
+                <th>{{=T('时间')}}</th>
+            </tr>
+            {{for article in articles[3]:}}
+            {{
+            import datetime
+            #date = datetime.datetime(article.date)
+            date = article.date
+            date = datetime.date(date.year, date.month, date.day)
+            date = date.isoformat()
+            }}
+            {{=TR(A(article.title, _href=URL('show', args=article.id), _target='_blank'), ' (' + date + ')')}}
+            {{pass}}
+            </table>
+        </div><!-- End #tabs-3 -->
+        <div id="tabs-4">
+            <table>
+            <tr>
+                <th>{{=T('标题')}}</th>
+                <th>{{=T('时间')}}</th>
+            </tr>
+            {{for article in articles[4]:}}
+            {{
+            import datetime
+            #date = datetime.datetime(article.date)
+            date = article.date
+            date = datetime.date(date.year, date.month, date.day)
+            date = date.isoformat()
+            }}
+            {{=TR(A(article.title, _href=URL('show', args=article.id), _target='_blank'), ' (' + date + ')')}}
+            {{pass}}
+            </table>
+        </div><!-- End #tabs-4 -->
+    </div><!-- End #tabs -->
+</div><!-- End .iframe -->
+
+{{elif type == 'normal':}}
+<style type="text/css">
+#module-3-2 {
+    width: 790px;    /* 留出10px的余量 */
+}
+</style>
+<!-- for normal page -->
+<div class="normal">
+<table>
+<tr>
+    <th>{{=T('标题')}}</th>
+    <th>{{=T('时间')}}</th>
+</tr>
+{{for article in articles[0]:}}
+{{
+import datetime
+#date = datetime.datetime(article.date)
+date = article.date
+date = datetime.date(date.year, date.month, date.day)
+date = date.isoformat()
+}}
+{{=TR(A(article.title, _href=URL('show', args=article.id), _target='_blank'), date)}}
+{{pass}}
+</table>
+</div><!-- End .normal -->
+{{pass}}
+
+{{block head}}
+<script src="http://app.baidu.com/static/appstore/monitor.st"></script>
+<style type="text/css">
+#module-whole {
+    margin-left: 10px;
+}
+#module-header {
+    margin: 0;
+    header: 0;
+}
+div.iframe td, div.normal td {
+    text-align: left;
+}
+div.normal td:last-child {
+    text-align: center;
+}
+tr {
+    border-bottom: 1px solid #CCCCCC;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #CCCCCC;
+}
+tbody tr:nth-child(2n) td, tbody tr.even td {
+    background: none repeat scroll 0 0 #E5ECF9;
+}
+</style>
+{{end}}
+
+{{block header}}
+{{end}}
+
+{{block footer}}
+{{end}}
